@@ -4,7 +4,7 @@
 public class GroundCheck : MonoBehaviour
 {
     [Tooltip("Maximum distance from the ground.")]
-    public float distanceThreshold = .15f;
+    private float distanceThreshold = 0.9f;
 
     [Tooltip("Whether this transform is grounded now.")]
     public bool isGrounded = true;
@@ -21,7 +21,7 @@ public class GroundCheck : MonoBehaviour
     void LateUpdate()
     {
         // Check if we are grounded now.
-        bool isGroundedNow = Physics.Raycast(RaycastOrigin, Vector3.down, distanceThreshold * 2);
+        bool isGroundedNow = Physics.Raycast(RaycastOrigin, Vector3.down, distanceThreshold * 2f);
 
         // Call event if we were in the air and we are now touching the ground.
         if (isGroundedNow && !isGrounded)
@@ -31,6 +31,8 @@ public class GroundCheck : MonoBehaviour
 
         // Update isGrounded.
         isGrounded = isGroundedNow;
+
+        OnDrawGizmosSelected();
     }
 
     void OnDrawGizmosSelected()

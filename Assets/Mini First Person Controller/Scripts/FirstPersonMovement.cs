@@ -32,6 +32,8 @@ public class FirstPersonMovement : MonoBehaviour
     {
         if(!canMove)
         {
+            rigidbody.velocity = new Vector3();
+            rigidbody.angularVelocity = new Vector3();
             return;
         }
 
@@ -46,7 +48,28 @@ public class FirstPersonMovement : MonoBehaviour
         }
 
         // Get targetVelocity from input.
-        Vector2 targetVelocity =new Vector2( Input.GetAxis("Horizontal") * targetMovingSpeed, Input.GetAxis("Vertical") * targetMovingSpeed);
+        //Vector2 targetVelocity =new Vector2( Input.GetAxis("Horizontal") * targetMovingSpeed, Input.GetAxis("Vertical") * targetMovingSpeed);
+        Vector2 targetVelocity = new Vector2();
+
+        if(Input.GetKey(KeyCode.W))
+        {
+          targetVelocity = new Vector2(targetVelocity.x, targetVelocity.y + targetMovingSpeed);
+        }
+
+        if(Input.GetKey(KeyCode.A))
+        {
+          targetVelocity = new Vector2(targetVelocity.x - targetMovingSpeed, targetVelocity.y);
+        }
+
+        if(Input.GetKey(KeyCode.S))
+        {
+          targetVelocity = new Vector2(targetVelocity.x, targetVelocity.y - targetMovingSpeed);
+        }
+
+        if(Input.GetKey(KeyCode.D))
+        {
+          targetVelocity = new Vector2(targetVelocity.x + targetMovingSpeed, targetVelocity.y);
+        }
 
         // Apply movement.
         rigidbody.velocity = transform.rotation * new Vector3(targetVelocity.x, rigidbody.velocity.y, targetVelocity.y);

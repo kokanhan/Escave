@@ -21,19 +21,7 @@ public class explosion : MonoBehaviour
 
     void BlastRock()
     {
-        ps.Play();
-        Debug.Log("why?");
-        //if (!ps.isPlaying)//no need for now
-       // {
-            Debug.Log("now you should blast");
-            foreach (var rock in rocks)
-            {
-                rock.SetActive(false);
-            }
-            //set rocks disabled
-
-            Destroy(gameObject,3f);
-       // }
+        GetComponent<Exploder>().startExplosionCountingDown();
     }
 
     public void RemoveItem(Item item)
@@ -62,9 +50,7 @@ public class explosion : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("the bomb is on the ground or you are getting too close!");
-
-        if (Input.GetKey(KeyCode.R)&& other.tag=="Bomb")
+        if (Input.GetKey(KeyCode.R)&& SetUp)
         {
             BlastRock();
         }
@@ -80,11 +66,7 @@ public class explosion : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.R) && SetUp)
-        {
-            
-            BlastRock();
-        }
+
     }
 
 }

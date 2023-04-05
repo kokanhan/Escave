@@ -12,6 +12,8 @@ TagManager:
   - ladder
   - Back
   - Go
+  - LadderStart
+  - LadderEnd
   layers:
   - Default
   - TransparentFX
