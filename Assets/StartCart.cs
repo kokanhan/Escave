@@ -4,59 +4,45 @@ using UnityEngine;
 
 public class StartCart : MonoBehaviour
 {
-    public static StartCart Instance;
-    public GameObject player;
-    public GameObject playerOnCart;
-    public GameObject cartModel;
+  private bool isIn;
+  public Camera camera;
 
-    public GameObject DestCart;
-    public bool arrival;
-
-
-    private IEnumerator coroutine;
-
-    void Awake()
+  void Update()
+  {
+    if(Input.GetKeyDown(KeyCode.R))
     {
-        Instance = this;
-        arrival = false;
-        DestCart.SetActive(false);
-        cartModel.SetActive(true);
+      Ray ray = camera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+      RaycastHit hit;
 
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player") && Input.GetKey(KeyCode.R))
+      if (Physics.Raycast(ray, out hit))
+      {
+        if(Vector3.Distance(hit.transform.position, camera.transform.position) > 5.0f)
         {
-            //player.SetActive(false);
-            cartModel.SetActive(false);
-            playerOnCart.SetActive(true);
-        }
-        
-    }
-    private void Update()
-    {
-        coroutine = GetOutCart(2.0f);
-        StartCoroutine(coroutine);
-    }
-
-    private IEnumerator GetOutCart(float v)
-    {
-        if (arrival == true && Input.GetKey(KeyCode.R) && playerOnCart.activeInHierarchy)
-        {
-            Debug.Log("Go Bot!");
-            player.SetActive(true);
-
-            playerOnCart.SetActive(false);
-            DestCart.SetActive(true);
-
-            player.SetActive(true);
-            arrival = false;
-            yield return new WaitForSeconds(v);
-            
-
+          return;
         }
 
 
+        if(hit.collider.tag == "Go")
+        {
+          GetComponent<railFollow>().startCartNow(isIn);
+        }
+      }
     }
+  }
+
+  void OnTriggerEnter(Collider other)
+  {
+      if (other.CompareTag("Player"))
+      {
+          isIn = true;
+      }
+  }
+
+  void OnTriggerExit(Collider other)
+  {
+      if (other.CompareTag("Player"))
+      {
+          isIn = false;
+      }
+  }
 }
