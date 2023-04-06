@@ -38,7 +38,7 @@ public class railFollow : MonoBehaviour
             x++;
         }
 
-        //arrival 
+        //arrival
         if (actualPosition == pathPoints[x].transform.position && x == numberOfPoints - 1)
         {
             Debug.Log("Hello!");
