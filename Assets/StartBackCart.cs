@@ -47,14 +47,16 @@ public class StartBackCart : MonoBehaviour
 
     private IEnumerator GetOutCart(float v)
     {
-        if (arrival == true && Input.GetKey(KeyCode.D))
+        if (arrival == true && Input.GetKey(KeyCode.R)&& playerOnCart.activeInHierarchy)
         {
             Debug.Log("Go Bot!");
             player.SetActive(true);
             playerOnCart.SetActive(false);
             DestCart.SetActive(true);
             player.SetActive(true);
+            arrival = false;
             yield return new WaitForSeconds(v);
+            
 
         }
         

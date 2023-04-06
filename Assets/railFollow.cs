@@ -10,7 +10,7 @@ public class railFollow : MonoBehaviour
     public float speed=10f;
 
     private Vector3 actualPosition;
-    private int x;
+    public int x;
     AudioSource railSound;
     //Hide the player and rest its position
     [Header("======Player to Hide and destination position======")]
@@ -30,10 +30,16 @@ public class railFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (StartCart.Instance.arrival == true)
+        {
+            Debug.Log("wocaonima");
+            x = 0;
+            return;
+        }
         actualPosition = obj.transform.position;
         obj.transform.position = Vector3.MoveTowards(actualPosition, pathPoints[x].transform.position, speed * Time.deltaTime);
 
-        if(actualPosition == pathPoints[x].transform.position && x!= numberOfPoints - 1)
+        if (actualPosition == pathPoints[x].transform.position && x != numberOfPoints - 1)
         {
             x++;
         }
@@ -44,8 +50,12 @@ public class railFollow : MonoBehaviour
             Debug.Log("Hello!");
             railSound.Stop();
             StartCart.Instance.arrival = true;
-            
+
+            //gui ling
+            //x = 0;
+
         }
+
     }
     void PlayerTakeRide()
     {

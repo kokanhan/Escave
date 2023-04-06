@@ -42,7 +42,7 @@ public class StartCart : MonoBehaviour
 
     private IEnumerator GetOutCart(float v)
     {
-        if (arrival == true && Input.GetKey(KeyCode.D))
+        if (arrival == true && Input.GetKey(KeyCode.R) && playerOnCart.activeInHierarchy)
         {
             Debug.Log("Go Bot!");
             player.SetActive(true);
@@ -51,7 +51,9 @@ public class StartCart : MonoBehaviour
             DestCart.SetActive(true);
 
             player.SetActive(true);
+            arrival = false;
             yield return new WaitForSeconds(v);
+            
 
         }
 
