@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 1
   itemName: hoe
   value: 1
-  icon: {fileID: 21300000, guid: 61007b5e0af98a242a7a7a5d2f2ff40b, type: 3}
+  icon: {fileID: 21300000, guid: 338cf5f70aa376c46a4ef5d2e3683ad3, type: 3}
   itemType: 3
