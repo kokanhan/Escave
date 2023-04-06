@@ -97,7 +97,7 @@ public class InstructionChecker : MonoBehaviour
                 }
                 else
                 {
-                    ItemPickUp();//已经写好了
+                    //ItemPickUp();//已经写好了
                 }
                 
             }
