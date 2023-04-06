@@ -37,6 +37,12 @@ public class railFollowBack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (StartCart.Instance.arrival == true)
+        {
+            Debug.Log("wocaonima");
+            x = 0;
+            return;
+        }
         actualPosition = obj.transform.position;
         obj.transform.position = Vector3.MoveTowards(actualPosition, pathPoints[x].transform.position, speed * Time.deltaTime);
 
@@ -51,6 +57,9 @@ public class railFollowBack : MonoBehaviour
             Debug.Log("Hello!");
             railSound.Stop();
             StartBackCart.Instance.arrival = true;
+            
+            //gui ling
+            //x = 0;
             
         }
     }

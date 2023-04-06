@@ -6,10 +6,12 @@ public class ItemPickUp : MonoBehaviour
 {
     public Item item;
     public GameObject hoeInHand;
+    
     void Pickup()
     {
         InventoryManager.Instance.Add(item);
         hoeInHand.SetActive(true);
+        GameObject.Find("First Person Controller").GetComponent<FirstPersonMovement>().hoePicked = true;
         Destroy(gameObject);
     }
 

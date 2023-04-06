@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 5
   itemName: bomb
   value: 1
-  icon: {fileID: 21300000, guid: 51290e0bb403387499e2521141c7f752, type: 2}
+  icon: {fileID: 21300000, guid: 5eb69267590249c4d84805356315b69c, type: 3}
   itemType: 2

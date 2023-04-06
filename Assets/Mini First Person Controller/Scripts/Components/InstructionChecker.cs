@@ -47,10 +47,11 @@ public class InstructionChecker : MonoBehaviour
 
           Ray ray = camera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
           RaycastHit hit;
+            Debug.DrawRay(ray.origin, ray.direction * 10, Color.blue);
 
-          if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit))
           {
-            if(Vector3.Distance(hit.transform.position, transform.position) > 2.5f)
+            if(Vector3.Distance(hit.transform.position, transform.position) > 3.0f)
             {
               return;
             }
