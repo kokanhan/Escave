@@ -15,4 +15,5 @@ MonoBehaviour:
   id: 4
   itemName: charcoal
   value: 1
-  icon: {fileID: 21300000, guid: a5ab5fb2d42447b488246ba005a8c988, type: 3}
+  icon: {fileID: 21300000, guid: 4e94fb8a8c0961e4992cc8bf19fe1a13, type: 3}
+  itemType: 0

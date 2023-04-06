@@ -15,4 +15,5 @@ MonoBehaviour:
   id: 2
   itemName: sulfur
   value: 1
-  icon: {fileID: 21300000, guid: 572baf495ed63464c8176435d5ff0630, type: 3}
+  icon: {fileID: 21300000, guid: 18e2e5c52627e2c4ab9313e790059701, type: 3}
+  itemType: 0
