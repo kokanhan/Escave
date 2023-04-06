@@ -16,6 +16,7 @@ public class HoeAction : MonoBehaviour
     {
         if(mAnimator != null)
         {
+            //if (Input.GetMouseButtonDown(0))
             if (Input.GetKey(KeyCode.E))
             {
                 mAnimator.SetTrigger("TrDig");

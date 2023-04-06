@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 public class Jump : MonoBehaviour
 {
     Rigidbody rigidbody;
@@ -9,7 +9,7 @@ public class Jump : MonoBehaviour
     [SerializeField, Tooltip("Prevents jumping when the transform is in mid-air.")]
     GroundCheck groundCheck;
 
-
+    GameObject backpack;
     void Reset()
     {
         // Try to get groundCheck.
@@ -20,6 +20,9 @@ public class Jump : MonoBehaviour
     {
         // Get rigidbody.
         rigidbody = GetComponent<Rigidbody>();
+
+
+        //backpack = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
     }
 
     void LateUpdate()
@@ -30,5 +33,25 @@ public class Jump : MonoBehaviour
             rigidbody.AddForce(Vector3.up * 100 * jumpStrength);
             Jumped?.Invoke();
         }
+
+        //if (Input.GetKey(KeyCode.B))
+        //{
+        //    backpackSwitch();
+        //}
     }
+
+    //void backpackSwitch()
+    //{
+    //    if (backpack.activeSelf)
+    //    {
+    //        //backpack.SetActive(false);//gameObject.GetComponent<Button>().onClick.Invoke(); 
+    //        backpack.transform.GetChild(1).gameObject.GetComponent<Button>().onClick.Invoke();
+
+    //    }
+    //    else
+    //    {
+    //        backpack.SetActive(true);
+    //        GameObject.Find("Canvas").transform.GetChild(1).gameObject.GetComponent<Button>().onClick.Invoke();
+    //    }
+    //}
 }
