@@ -22,6 +22,10 @@ public class Exploder : MonoBehaviour {
 	private float explodedWaveCurTime;
 	private float explodedWaveTime = 0.5f;
 
+	public GameObject theEnd;
+	public GameObject flame;
+	private Vector3[] flamePos = new Vector3[]{new Vector3(0.068f, 1.56f, 0.09f), new Vector3(0.176f, 1.479f, 0.058f), new Vector3(0.031f, 0.941f, 0.025f)};
+
 	public virtual IEnumerator explode() {
 		ExploderComponent[] components = GetComponents<ExploderComponent>();
 		foreach (ExploderComponent component in components) {
@@ -83,6 +87,7 @@ public class Exploder : MonoBehaviour {
 		if (curTime > explosionTime && !exploded)
 		{
 			exploded = true;
+			underFire = false;
 			camera.GetComponent<CameraShaker>().ShakeCamera();
 
 			foreach (var rock in GetComponent<explosion>().rocks)
@@ -97,6 +102,17 @@ public class Exploder : MonoBehaviour {
 
 		if(underFire)
 		{
+			if(curTime / explosionTime < 0.3f)
+			{
+				flame.transform.localPosition = Vector3.Lerp(flamePos[0], flamePos[1], curTime / explosionTime / 0.3f);
+			}
+			else
+			{
+				flame.transform.localPosition = Vector3.Lerp(flamePos[1], flamePos[2], (curTime - explosionTime * 0.3f) / explosionTime / 0.7f);
+			}
+
+			theEnd.GetComponent<Renderer>().material.SetFloat("_progress", curTime / explosionTime);
+
 			curTime += Time.deltaTime;
 		}
 	}
@@ -121,5 +137,6 @@ public class Exploder : MonoBehaviour {
 	public void startExplosionCountingDown()
 	{
 		underFire = true;
+		flame.SetActive(true);
 	}
 }
