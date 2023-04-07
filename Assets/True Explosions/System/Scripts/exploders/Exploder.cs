@@ -88,7 +88,7 @@ public class Exploder : MonoBehaviour {
 		{
 			exploded = true;
 			underFire = false;
-			camera.GetComponent<CameraShaker>().ShakeCamera();
+			camera.GetComponent<CameraShaker>().ShakeCamera(1.5f, 0.55f);
 
 			foreach (var rock in GetComponent<explosion>().rocks)
 			{
