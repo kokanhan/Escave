@@ -34,7 +34,11 @@ public class FirstPersonMovement : MonoBehaviour
     {
         // Get the rigidbody on this.
         rigidbody = GetComponent<Rigidbody>();
-        backpack = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+
+        if(GameObject.Find("Canvas") != null)
+        {
+            backpack = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+        }
     }
 
     void FixedUpdate()
@@ -103,7 +107,7 @@ public class FirstPersonMovement : MonoBehaviour
         if (backpack.activeInHierarchy)
         {
             yield return new WaitForSeconds(0.5f);
-            //backpack.SetActive(false);//gameObject.GetComponent<Button>().onClick.Invoke(); 
+            //backpack.SetActive(false);//gameObject.GetComponent<Button>().onClick.Invoke();
             backpack.transform.GetChild(1).gameObject.GetComponent<Button>().onClick.Invoke();//close
 
         }
@@ -144,4 +148,3 @@ public class FirstPersonMovement : MonoBehaviour
 
     }
 }
-

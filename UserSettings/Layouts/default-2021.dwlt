@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 780.8
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 371}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 79137
+  controlID: 123
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 79138
+  controlID: 23
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 79139
+  controlID: 24
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -313,7 +313,7 @@ MonoBehaviour:
   m_SerializedViewNames: []
   m_SerializedViewValues: []
   m_PlayModeViewName: GameView
-  m_ShowGizmos: 1
+  m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
   m_TargetSize: {x: 1920, y: 1080}
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_EnterPlayModeBehavior: 0
   m_UseMipMap: 0
   m_VSyncEnabled: 0
-  m_Gizmos: 1
+  m_Gizmos: 0
   m_Stats: 0
   m_SelectedSizes: 03000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_ZoomArea:
@@ -404,21 +404,21 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 3079.6}
-      m_SelectedIDs: bc1bfaff
-      m_LastClickedID: -386116
-      m_ExpandedIDs: 243bfaff723efaff36aafdffb6c9fffff4c9ffff10caffff14caffff16caffffdecbffff04ccffff08ccffffeaccffffeeccfffff0ccffff18cdffff1ccdffff1ecdffff1ccfffff20cfffff22cffffff8d2ffffc6d3ffffcad3ffffccd3ffff2ed5ffff32d5ffff34d5ffff96d7ffffa8f0ffff20fbffffec64000050650000787a0000887a00008e7b0000a07b0000ae7b0000107c0000ce7d0000787e0000de7e00000a7f0000567f00000e800000808000008e800000e4800000388200003e820000aa820000e68200000e830000268300002a8300002c830000
+      scrollPos: {x: 0, y: 304}
+      m_SelectedIDs: acedffff
+      m_LastClickedID: -4692
+      m_ExpandedIDs: 22fbffffea61000080620000dc63000082640000dc6400001865000092650000f6650000566700006a67000070670000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Light
-        m_OriginalName: Light
+        m_Name: Crouched Audio
+        m_OriginalName: Crouched Audio
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -378080
+        m_UserData: 26708
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -464,8 +464,8 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: -100, y: -25.600006}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: -100, y: -25.600006}
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -486,7 +486,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 24.8}
+      snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-scene-view-toolbar
@@ -639,8 +639,8 @@ MonoBehaviour:
       containerId: overlay-container--right
       floating: 0
       collapsed: 0
-      displayed: 1
-      snapOffset: {x: 0, y: 24.8}
+      displayed: 0
+      snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Particles
@@ -656,9 +656,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -119.93933, y: 131.5853, z: 131.58296}
+    m_Target: {x: -95.609314, y: 152.28831, z: 78.59931}
     speed: 2
-    m_Value: {x: -119.93933, y: 131.5853, z: 131.58296}
+    m_Value: {x: -95.609314, y: 152.28831, z: 78.59931}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -705,20 +705,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.15666826, y: 0.6790368, z: -0.104221575, w: -0.7115899}
+    m_Target: {x: -0.020428613, y: -0.112569205, z: -0.034567818, w: 0.99428713}
     speed: 2
-    m_Value: {x: -0.15644483, y: 0.6780684, z: -0.10407294, w: -0.7105751}
+    m_Value: {x: -0.023429632, y: -0.110812865, z: -0.034821812, w: 0.9929547}
   m_Size:
-    m_Target: 10
+    m_Target: 0.03692556
     speed: 2
-    m_Value: 10
+    m_Value: 0.03866551
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 1.4003006
-    m_SpeedNormalized: 0.7000003
+    m_Speed: 2
+    m_SpeedNormalized: 1
     m_SpeedMin: 0.001
     m_SpeedMax: 2
     m_EasingEnabled: 1
@@ -1852,22 +1852,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/EffectTexturesAndPrefabs/Prefabs
+    - Assets/Mini First Person Controller/Audio
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/EffectTexturesAndPrefabs/Prefabs
+  - Assets/Mini First Person Controller/Audio
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\sion9\Desktop\aaa\Escave
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 70600f00
-    m_LastClickedID: 1007728
-    m_ExpandedIDs: 00000000127600003a010100a861010072600f0000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 192.6}
+    m_SelectedIDs: a26f0100
+    m_LastClickedID: 94114
+    m_ExpandedIDs: 000000008e75000018760000207600002e7600005e77000060770000a26f0100a46f010000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1895,7 +1895,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001276000000ca9a3bffffff7f
+    m_ExpandedIDs: 000000008e750000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2009,7 +2009,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -378088
+  m_LastSelectedObjectID: 26740
 --- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52
