@@ -102,14 +102,14 @@ public class FirstPersonMovement : MonoBehaviour
 
         if (backpack.activeInHierarchy)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
             //backpack.SetActive(false);//gameObject.GetComponent<Button>().onClick.Invoke(); 
             backpack.transform.GetChild(1).gameObject.GetComponent<Button>().onClick.Invoke();//close
 
         }
         else
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
 
             GameObject.Find("Canvas").transform.GetChild(1).gameObject.GetComponent<Button>().onClick.Invoke();//open
             backpack.SetActive(true);
