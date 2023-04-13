@@ -107,7 +107,7 @@ public class FirstPersonAudio : MonoBehaviour
         // Play audioToPlay if it was not playing.
         if (audioToPlay && !audioToPlay.isPlaying)
         {
-          Debug.Log(audioToPlay);
+          //Debug.Log(audioToPlay);
             audioToPlay.Play();
         }
     }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.1569717, g: 0.13200575, b: 0.10141931, a: 1}
+  m_IndirectSpecularColor: {r: 0.1569674, g: 0.13200161, b: 0.10141715, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1444,6 +1444,10 @@ PrefabInstance:
     - target: {fileID: 4122768067518240674, guid: 9d332f3d0567af34abb2b2d2ccd153a6, type: 3}
       propertyPath: m_Name
       value: sulfurPowder (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122768067518240674, guid: 9d332f3d0567af34abb2b2d2ccd153a6, type: 3}
+      propertyPath: m_TagString
+      value: Mine
       objectReference: {fileID: 0}
     - target: {fileID: 4122768067518240675, guid: 9d332f3d0567af34abb2b2d2ccd153a6, type: 3}
       propertyPath: m_RootOrder
@@ -6935,7 +6939,7 @@ PrefabInstance:
     - target: {fileID: 23297386968033702, guid: 988fc5747321c5e4d9f0acff90043f5f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 80da0876f96dc1041981d47a6f21ab52, type: 2}
+      objectReference: {fileID: 2100000, guid: d926dcd18b5615d409bb1c5739e56b70, type: 2}
     - target: {fileID: 23400477416306828, guid: 988fc5747321c5e4d9f0acff90043f5f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -33586,7 +33590,7 @@ PrefabInstance:
     - target: {fileID: 1105396653869319030, guid: 08e9b5125e99b774a8fb402b0bc57038, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 80da0876f96dc1041981d47a6f21ab52, type: 2}
+      objectReference: {fileID: 2100000, guid: d926dcd18b5615d409bb1c5739e56b70, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08e9b5125e99b774a8fb402b0bc57038, type: 3}
 --- !u!1 &1112390886025159259
@@ -34711,6 +34715,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: coalPowder
       objectReference: {fileID: 0}
+    - target: {fileID: 2452493091100011501, guid: 5adc4ec946470f54dadacc2e4805eed8, type: 3}
+      propertyPath: m_TagString
+      value: Mine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5adc4ec946470f54dadacc2e4805eed8, type: 3}
 --- !u!65 &2452493090944650629
@@ -34756,7 +34764,7 @@ GameObject:
   - component: {fileID: 2452493090944650634}
   m_Layer: 0
   m_Name: coalPowder (1)
-  m_TagString: Untagged
+  m_TagString: Mine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35621,6 +35629,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: sulfurPowder
       objectReference: {fileID: 0}
+    - target: {fileID: 4122768067518240674, guid: 9d332f3d0567af34abb2b2d2ccd153a6, type: 3}
+      propertyPath: m_TagString
+      value: Mine
+      objectReference: {fileID: 0}
     - target: {fileID: 4122768067518240675, guid: 9d332f3d0567af34abb2b2d2ccd153a6, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -35889,6 +35901,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: niterPowder
       objectReference: {fileID: 0}
+    - target: {fileID: 5505521103977087586, guid: b65bdce99e0bc0a4da2d1e8ff2525076, type: 3}
+      propertyPath: m_TagString
+      value: Mine
+      objectReference: {fileID: 0}
     - target: {fileID: 5505521103977087587, guid: b65bdce99e0bc0a4da2d1e8ff2525076, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -36078,7 +36094,7 @@ GameObject:
   - component: {fileID: 5505521103442209285}
   m_Layer: 0
   m_Name: niterPowder (1)
-  m_TagString: Untagged
+  m_TagString: Mine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

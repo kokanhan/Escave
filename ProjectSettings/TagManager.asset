@@ -15,6 +15,7 @@ TagManager:
   - LadderStart
   - LadderEnd
   - Charcoal
+  - Mine
   layers:
   - Default
   - TransparentFX

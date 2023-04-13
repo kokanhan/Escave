@@ -60,7 +60,7 @@ public class BuildBomb : MonoBehaviour
     //write a function that when the player press R, call UseItem
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("hey!");
+        //Debug.Log("hey!");
         NewItems = InventoryManager.Instance.Items;
 
         if (Input.GetKey(KeyCode.R))

@@ -23,6 +23,7 @@ public class FirstPersonMovement : MonoBehaviour
     public List<System.Func<float>> speedOverrides = new List<System.Func<float>>();
 
     GameObject backpack;
+    Camera camera;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class FirstPersonMovement : MonoBehaviour
         {
             backpack = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
         }
+        camera = this.transform.GetChild(0).gameObject.GetComponent<Camera>();
     }
 
     void FixedUpdate()
@@ -99,6 +101,43 @@ public class FirstPersonMovement : MonoBehaviour
         }
         // Apply movement.
         rigidbody.velocity = transform.rotation * new Vector3(targetVelocity.x, rigidbody.velocity.y, targetVelocity.y);
+
+
+        if (Input.GetKey(KeyCode.F))
+        {
+            //pick up item
+            Ray ray = camera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+            RaycastHit hit;
+            GameObject hitObject;
+            Debug.DrawRay(ray.origin, ray.direction * 10, Color.blue);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (Vector3.Distance(hit.transform.position, transform.position) > 3.0f)
+                {
+                    return;
+                }
+
+                if (hit.collider.name == "Hoe2Pick")
+                {
+                    hitObject = hit.transform.gameObject;
+                    hitObject.GetComponent<ItemPickUp>().Pickup();
+                    //GetComponentInParent<FirstPersonMovement>().canMove = false;
+                }
+                else if (hit.collider.tag == "Mine")
+                {
+                    hitObject = hit.transform.gameObject;
+                    hitObject.GetComponent<MineItemPickUp>().Pickup();
+                    //GetComponentInParent<FirstPersonMovement>().canMove = false;
+                }
+                else if (hit.collider.name == "Battery2Pick")
+                {
+            
+
+                    //GetComponentInParent<FirstPersonMovement>().canMove = false;
+                }
+            }
+        }
     }
 
     IEnumerator backpackSwitch()
@@ -106,14 +145,14 @@ public class FirstPersonMovement : MonoBehaviour
 
         if (backpack.activeInHierarchy)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
             //backpack.SetActive(false);//gameObject.GetComponent<Button>().onClick.Invoke();
             backpack.transform.GetChild(1).gameObject.GetComponent<Button>().onClick.Invoke();//close
 
         }
         else
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
 
             GameObject.Find("Canvas").transform.GetChild(1).gameObject.GetComponent<Button>().onClick.Invoke();//open
             backpack.SetActive(true);
@@ -125,12 +164,12 @@ public class FirstPersonMovement : MonoBehaviour
     {
         if (hoe.activeInHierarchy)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
             hoe.SetActive(false);
         }
         else
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
             hoe.SetActive(true);
         }
     }
