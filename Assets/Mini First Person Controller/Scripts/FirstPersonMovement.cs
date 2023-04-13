@@ -132,8 +132,9 @@ public class FirstPersonMovement : MonoBehaviour
                 }
                 else if (hit.collider.name == "Battery2Pick")
                 {
-            
 
+                    hitObject = hit.transform.gameObject;
+                    hitObject.GetComponent<MineItemPickUp>().Pickup();
                     //GetComponentInParent<FirstPersonMovement>().canMove = false;
                 }
             }
