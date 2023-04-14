@@ -44,6 +44,7 @@ public class railFollow : MonoBehaviour
         player.transform.localPosition = new Vector3(0, 1, 0);
       }
 
+      // luzhuo please explain
       for (int i = 0; i < time.Length; i += 1)
       {
         if(curTime < time[i])
