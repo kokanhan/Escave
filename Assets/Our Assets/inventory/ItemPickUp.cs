@@ -7,7 +7,7 @@ public class ItemPickUp : MonoBehaviour
     public Item item;
     public GameObject hoeInHand;
     
-    void Pickup()
+    public void Pickup()
     {
         InventoryManager.Instance.Add(item);
         hoeInHand.SetActive(true);
