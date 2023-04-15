@@ -56,6 +56,8 @@ public class HoeAction : MonoBehaviour
           {
             hitEffect.transform.position = hit.point;
             hitEffect.GetComponent<ParticleSystem>().Play();
+            hoe.GetComponent<AudioSource>().time = 0.65f;
+            hoe.GetComponent<AudioSource>().Play();
 
             forceStop();
 

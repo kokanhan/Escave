@@ -39,6 +39,15 @@ public class railFollow : MonoBehaviour
         return;
       }
 
+      if(!cart.GetComponent<AudioSource>().isPlaying)
+      {
+        cart.GetComponent<AudioSource>().Play();
+      }
+      else
+      {
+        cart.GetComponent<AudioSource>().volume = Mathf.Lerp(1f, 0.05f, Mathf.Clamp(Vector3.Distance(cart.transform.position, player.transform.position) / 25f, 0f, 1f));
+      }
+
       if(player.transform.parent != null)
       {
         player.transform.localPosition = new Vector3(0, 1, 0);
