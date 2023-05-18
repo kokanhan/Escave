@@ -6,15 +6,15 @@ public class mines : MonoBehaviour
 {
     private AudioSource hoeSound;
     public GameObject powder;
-    float totalDownTime = 0;
+
     bool holding = false;
-    bool HoldEnoughTime;
+    
     // Start is called before the first frame update
     void Start()
     {
         powder.SetActive(false);
-        HoldEnoughTime = false;
-        totalDownTime = 0;
+        
+      
         hoeSound = GetComponent<AudioSource>();
 
     }
@@ -26,24 +26,14 @@ public class mines : MonoBehaviour
         // If a first click detected, and still clicking,
         // measure the total click time, and fire an event
         // if we exceed the duration specified
-        if (holding && Input.GetKey(KeyCode.E))
+        if (holding )
         {
-            if (!hoeSound.isPlaying)
+            
+            if (GameObject.Find("First Person Controller").GetComponent<HoeAction>().HoldEnoughTime == 3)
             {
-                hoeSound.Play();
-            } 
-            totalDownTime += Time.deltaTime;
-            Debug.Log("timer:"+ totalDownTime);
-            if (totalDownTime >= 3f)
-            {
-                HoldEnoughTime = true;
-                Debug.Log("Long holding");
-                totalDownTime = 0f;
-            }
-            if (HoldEnoughTime)
-            {
+                Debug.Log("hold enough time");
                 powder.SetActive(true);
-                HoldEnoughTime = false;
+                GameObject.Find("First Person Controller").GetComponent<HoeAction>().HoldEnoughTime = 0;
                 Destroy(gameObject);
             }
         }
@@ -51,23 +41,16 @@ public class mines : MonoBehaviour
 
 
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "HoeHead")
+        if (other.gameObject.tag == "Player")
         {
-            if (Input.GetKey(KeyCode.E))
-            {
+            
                 Debug.Log("start dig");
                 holding = true;
                 
-            }
-            //if (HoldEnoughTime)
-            //{
-            //    powder.SetActive(true);
-            //    HoldEnoughTime = false;
-            //    Destroy(gameObject);
-            //}
 
         }
+        
     }
 }

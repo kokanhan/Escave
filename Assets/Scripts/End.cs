@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class End : MonoBehaviour
 {
@@ -21,7 +22,8 @@ public class End : MonoBehaviour
         if(other.tag == "Player")
         {
           other.gameObject.GetComponent<FirstPersonMovement>().canMove = false;
-          Time.timeScale = 0;
+            //Time.timeScale = 0;
+            SceneManager.LoadScene("Fin", LoadSceneMode.Single);
         }
     }
 }

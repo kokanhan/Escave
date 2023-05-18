@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,13 +14,15 @@ public class railFollow : MonoBehaviour
     private bool goDownstair;
     private bool isRunning;
 
-    public float speed=10f;
+    public float speed=5f;
 
     AudioSource railSound;
     //Hide the player and rest its position
     [Header("======Player to Hide and destination position======")]
     public GameObject player;
     public Collider[] colliders;
+
+    bool playerReady =false;
 
     // Start is called before the first frame update
     void Start()
@@ -45,12 +47,12 @@ public class railFollow : MonoBehaviour
       }
       else
       {
-        cart.GetComponent<AudioSource>().volume = Mathf.Lerp(1f, 0.05f, Mathf.Clamp(Vector3.Distance(cart.transform.position, player.transform.position) / 25f, 0f, 1f));
+        cart.GetComponent<AudioSource>().volume = Mathf.Lerp(1f, 0.05f, Mathf.Clamp(Vector3.Distance(cart.transform.position, player.transform.position) / 25f, 0f, 1f));//这代码干嘛的
       }
 
       if(player.transform.parent != null)
       {
-        player.transform.localPosition = new Vector3(0, 1, 0);
+        player.transform.localPosition = new Vector3(0, 1, 0);//y代表player在cart所处的高度
       }
 
       // luzhuo please explain
@@ -70,7 +72,8 @@ public class railFollow : MonoBehaviour
 
           if(player.transform.parent != null)
           {
-            player.transform.parent = null;
+                    player.transform.localPosition = new Vector3(0, 1.2f, -3f);
+                    player.transform.parent = null;
           }
 
           for(int j = 0; j < colliders.Length; j += 1)
@@ -85,7 +88,14 @@ public class railFollow : MonoBehaviour
 
     public void startCartNow(bool playerIsIn)
     {
-      if (isRunning)
+        Vector3 originRotation = player.transform.localEulerAngles;
+        player.transform.parent = cart.transform.GetChild(1).gameObject.transform.GetChild(0).transform;
+        player.transform.localPosition = new Vector3(0, 1.2f, 0);
+
+        player.transform.eulerAngles = originRotation;
+        playerReady = true;
+
+        if (isRunning)
       {
         return;
       }
@@ -95,16 +105,19 @@ public class railFollow : MonoBehaviour
 
       if(playerIsIn)
       {
-        Vector3 originRotation = player.transform.localEulerAngles;
-        player.transform.parent = cart.transform;
-        player.transform.localPosition = new Vector3(0, 1, 0);
+        //Vector3 originRotation = player.transform.localEulerAngles;
+        //player.transform.parent = cart.transform.GetChild(1).gameObject.transform.GetChild(0).transform;
+        //player.transform.localPosition = new Vector3(0, 1.2f, 0);
 
-        player.transform.eulerAngles = originRotation;
-      }
+        //player.transform.eulerAngles = originRotation;
+        //    playerReady = true;
+            
+        }
 
-      if(goDownstair)
+      if(goDownstair && playerReady)
       {
-        for (int i = pathPoints.Length - 1, index = 0; i >= 0; i -= 1, index += 1)
+            Debug.Log("playerReady");
+            for (int i = pathPoints.Length - 1, index = 0; i >= 0; i -= 1, index += 1)
         {
           positions[index] = pathPoints[i].transform.position;
           rotations[index] = new Vector3(
@@ -114,7 +127,7 @@ public class railFollow : MonoBehaviour
           );
         }
       }
-      else
+      else if(playerReady)
       {
         for (int i = 0; i < pathPoints.Length; i += 1)
         {
@@ -139,7 +152,15 @@ public class railFollow : MonoBehaviour
 
       for(int i = 0; i < colliders.Length; i += 1)
       {
-        colliders[i].enabled = true;
+            if (isRunning)
+            {
+                colliders[i].enabled = true;
+            }
+            else
+            {
+                colliders[i].enabled = false;
+            }
+        
       }
     }
 }

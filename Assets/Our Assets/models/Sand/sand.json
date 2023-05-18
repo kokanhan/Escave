@@ -1,0 +1,170 @@
+{
+    "nodeDatas": [
+        {
+            "connections0Name": [
+                "Vector"
+            ],
+            "connections0NodeName": [
+                "ShaderNodeMapping.Mapping"
+            ],
+            "connections1Name": [],
+            "connections1NodeName": [],
+            "connections2Name": [],
+            "connections2NodeName": [],
+            "connections3Name": [],
+            "connections3NodeName": [],
+            "connections4Name": [],
+            "connections4NodeName": [],
+            "location": [
+                -1176.2835693359375,
+                273.3556213378906
+            ],
+            "name": "ShaderNodeTexCoord.Texture Coordinate"
+        },
+        {
+            "connections0Name": [],
+            "connections0NodeName": [],
+            "connections1Name": [
+                "Color2"
+            ],
+            "connections1NodeName": [
+                "ShaderNodeMixRGB.Mix"
+            ],
+            "location": [
+                -626.4080200195312,
+                272.7839660644531
+            ],
+            "name": "ShaderNodeTexNoise.Noise Texture",
+            "properties": [
+                "3D",
+                "0.0",
+                "150.0",
+                "15.0",
+                "0.6000000238418579",
+                "0.0"
+            ]
+        },
+        {
+            "connections0Name": [],
+            "connections0NodeName": [],
+            "connections1Name": [
+                "Color1"
+            ],
+            "connections1NodeName": [
+                "ShaderNodeMixRGB.Mix"
+            ],
+            "location": [
+                -436.0617370605469,
+                518.7874145507812
+            ],
+            "name": "ShaderNodeTexWave.Wave Texture",
+            "properties": [
+                "BANDS",
+                "X",
+                "X",
+                "SIN",
+                "1.8999998569488525",
+                "3.299999713897705",
+                "2.5",
+                "-3.999999761581421",
+                "0.7538461685180664",
+                "4.299999713897705"
+            ]
+        },
+        {
+            "connections0Name": [
+                "Vector",
+                "Vector"
+            ],
+            "connections0NodeName": [
+                "ShaderNodeTexNoise.Noise Texture",
+                "ShaderNodeTexWave.Wave Texture"
+            ],
+            "location": [
+                -966.2835693359375,
+                290.3556213378906
+            ],
+            "name": "ShaderNodeMapping.Mapping",
+            "properties": [
+                "POINT",
+                "0.0",
+                "0.0",
+                "0.0",
+                "0.0",
+                "0.0",
+                "0.0",
+                "0.0",
+                "0.0",
+                "0.0",
+                "1.0",
+                "1.0",
+                "1.0"
+            ]
+        },
+        {
+            "location": [
+                591.3212890625,
+                304.7557373046875
+            ],
+            "name": "NULL.ShaderNodeOutputMaterial.Material Output"
+        },
+        {
+            "location": [
+                209.49172973632812,
+                360.23919677734375
+            ],
+            "name": "NULL.ShaderNodeBsdfPrincipled.Principled BSDF"
+        },
+        {
+            "connections0Name": [
+                "Height"
+            ],
+            "connections0NodeName": [
+                "ShaderNodeBump.Bump"
+            ],
+            "location": [
+                -253.89337158203125,
+                285.0465087890625
+            ],
+            "name": "ShaderNodeMixRGB.Mix",
+            "properties": [
+                "MIX",
+                "False",
+                "0.8083332777023315",
+                "0.5",
+                "0.5",
+                "0.5",
+                "1.0",
+                "0.5",
+                "0.5",
+                "0.5",
+                "1.0"
+            ]
+        },
+        {
+            "connections0Name": [
+                "Normal"
+            ],
+            "connections0NodeName": [
+                "ShaderNodeBsdfPrincipled.Principled BSDF"
+            ],
+            "location": [
+                -36.69190979003906,
+                263.7813720703125
+            ],
+            "name": "ShaderNodeBump.Bump",
+            "properties": [
+                "False",
+                "0.7833333015441895",
+                "2.9999992847442627"
+            ]
+        },
+        {
+            "name": "EXTRA",
+            "properties": [
+                "True",
+                "True"
+            ]
+        }
+    ]
+}

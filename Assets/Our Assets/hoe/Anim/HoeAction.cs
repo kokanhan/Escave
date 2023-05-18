@@ -20,7 +20,7 @@ public class HoeAction : MonoBehaviour
     private Vector3 curEnd;
     private float curTime;
     private bool isIn;
-
+    public int HoldEnoughTime;
     void Start()
     {
       detector.transform.localPosition = new Vector3(-0.375f, 0.707f, 0.002568513f);
@@ -58,8 +58,9 @@ public class HoeAction : MonoBehaviour
             hitEffect.GetComponent<ParticleSystem>().Play();
             hoe.GetComponent<AudioSource>().time = 0.65f;
             hoe.GetComponent<AudioSource>().Play();
-
+                    HoldEnoughTime += 1;
             forceStop();
+
 
             return;
           }
