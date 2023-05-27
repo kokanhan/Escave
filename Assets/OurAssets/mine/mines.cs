@@ -26,10 +26,10 @@ public class mines : MonoBehaviour
         // If a first click detected, and still clicking,
         // measure the total click time, and fire an event
         // if we exceed the duration specified
-        if (holding )
+        if (holding)
         {
             
-            if (GameObject.Find("First Person Controller").GetComponent<HoeAction>().HoldEnoughTime == 3)
+            if (GameObject.Find("First Person Controller").GetComponent<HoeAction>().HoldEnoughTime >= 3)
             {
                 Debug.Log("hold enough time");
                 powder.SetActive(true);

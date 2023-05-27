@@ -7,9 +7,14 @@ public class FirstPersonLook : MonoBehaviour
     public float sensitivity = 2;
     public float smoothing = 1.5f;
 
+  
     Vector2 velocity;
     Vector2 frameVelocity;
+    public bool inGame;
 
+    //这样镜头才是瞄准了开头的方向
+    private float x = 2.12f;
+    private float y = 160f;
 
     void Reset()
     {
@@ -21,6 +26,10 @@ public class FirstPersonLook : MonoBehaviour
     {
         // Lock the mouse cursor to the game screen.
         //Cursor.lockState = CursorLockMode.Locked;
+
+        inGame = false;
+
+
     }
 
     void Update()
@@ -29,6 +38,7 @@ public class FirstPersonLook : MonoBehaviour
         {
           return;
         }
+
 
         // // Get smooth velocity.
         // Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
@@ -40,17 +50,22 @@ public class FirstPersonLook : MonoBehaviour
         // // Rotate camera up-down and controller left-right from velocity.
         // transform.localRotation = Quaternion.AngleAxis(-velocity.y, Vector3.right);
         // character.localRotation = Quaternion.AngleAxis(velocity.x, Vector3.up);
+        if(inGame)
+        {
+            transform.parent.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            //Debug.Log("x is " + x + "y is " + y);
+            x -= Input.GetAxis("Mouse Y") * 1.25f;
+            x = Mathf.Clamp(x, -90, 90);
+            y += Input.GetAxis("Mouse X") * 1.25f;
 
-        x -= Input.GetAxis("Mouse Y") * 1.25f;
-        x = Mathf.Clamp(x, -90, 90);
-        y += Input.GetAxis("Mouse X") * 1.25f;
-
-        transform.localEulerAngles = new Vector3(x, 0, 0);
-        transform.parent.transform.localEulerAngles = new Vector3(0, y, 0);
+            transform.localEulerAngles = new Vector3(x, 0, 0);
+            transform.parent.transform.localEulerAngles = new Vector3(0, y, 0);
+        }
+        
     }
 
-    private float x = 0;
-    private float y = 0;
+    //private float x = 0;
+    //private float y = 0;
 
     public void forceUpdate()
     {

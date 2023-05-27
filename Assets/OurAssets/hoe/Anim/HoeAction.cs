@@ -58,7 +58,8 @@ public class HoeAction : MonoBehaviour
             hitEffect.GetComponent<ParticleSystem>().Play();
             hoe.GetComponent<AudioSource>().time = 0.65f;
             hoe.GetComponent<AudioSource>().Play();
-                    HoldEnoughTime += 1;
+            HoldEnoughTime += 1;
+            Debug.Log("Holed time +1,times is "+ HoldEnoughTime);
             forceStop();
 
 
