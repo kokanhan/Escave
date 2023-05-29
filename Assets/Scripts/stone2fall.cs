@@ -43,6 +43,5 @@ public class stone2fall : MonoBehaviour
         {
             Destroy(gameObject);
         }
-            //Object.Destroy(gameObject, 5.0f);
     }
 }

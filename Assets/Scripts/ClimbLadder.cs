@@ -34,6 +34,8 @@ public class ClimbLadder : MonoBehaviour
 
     void Update()
     {
+        //假如已经在梯子上并且快到达顶部，就不进行if内操作
+        //if (isIn && !isClimbing && Input.GetKey(KeyCode.W))
         if (isIn && !isClimbing && Input.GetKey(KeyCode.F))
         {
             GetComponent<FirstPersonMovement>().canMove = false;

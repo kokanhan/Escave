@@ -6,11 +6,13 @@ public class DisableMainCam : MonoBehaviour
 {
     GameObject originalPlayerObject;
     GameObject playerCam;
+    public GameObject minerTalk;
 
     public float sec2Wait = 7f;
     // Start is called before the first frame update
     void Start()
     {
+        minerTalk.SetActive(false);
         //Cursor.lockState = CursorLockMode.Locked;
         StartCoroutine(LateCall(sec2Wait));
         originalPlayerObject = GameObject.Find("First Person Controller");
@@ -45,7 +47,7 @@ public class DisableMainCam : MonoBehaviour
             playerCam.transform.localEulerAngles = new Vector3(0, 0, 0);
             playerCam.GetComponent<AudioListener>().enabled = true;
             playerCam.GetComponent<FirstPersonLook>().inGame = true;
-
+            minerTalk.SetActive(true);
             //不需要设置playercontroller的角度，因为在player cam的FirstPersonLook脚本里受x,y的鼠标输入值控制
             //originalPlayerObject.transform.localEulerAngles = new Vector3(-12.263f, 158.852646f, 0);
             //originalPlayerObject.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
