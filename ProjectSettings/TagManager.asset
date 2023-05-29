@@ -16,6 +16,8 @@ TagManager:
   - LadderEnd
   - Charcoal
   - Mine
+  - ExitLadderStart
+  - ExitLadderEnd
   layers:
   - Default
   - TransparentFX

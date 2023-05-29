@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,7 @@ public class HoeAction : MonoBehaviour
     public GameObject hoe;
     public GameObject detector;
     public GameObject hitEffect;
+    public GameObject[] smallRock;
 
     private Vector3 start = new Vector3(0f, -286.491f, 11.457f);
     private Vector3 mid = new Vector3(0f, -286.491f, -20.457f);
@@ -56,9 +57,12 @@ public class HoeAction : MonoBehaviour
           {
             hitEffect.transform.position = hit.point;
             hitEffect.GetComponent<ParticleSystem>().Play();
+                    //一会儿根据raycast hit的标签来判断该生成什么种类碎石
+                    Instantiate(smallRock[0], hitEffect.transform.position, Quaternion.identity);
             hoe.GetComponent<AudioSource>().time = 0.65f;
             hoe.GetComponent<AudioSource>().Play();
-                    HoldEnoughTime += 1;
+            HoldEnoughTime += 1;
+            Debug.Log("Holed time +1,times is "+ HoldEnoughTime);
             forceStop();
 
 
