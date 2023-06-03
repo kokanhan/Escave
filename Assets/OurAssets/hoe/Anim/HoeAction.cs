@@ -26,6 +26,7 @@ public class HoeAction : MonoBehaviour
     {
       detector.transform.localPosition = new Vector3(-0.375f, 0.707f, 0.002568513f);
       curEnd = end;
+        camera = this.transform.GetChild(0).gameObject.GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -58,7 +59,11 @@ public class HoeAction : MonoBehaviour
             hitEffect.transform.position = hit.point;
             hitEffect.GetComponent<ParticleSystem>().Play();
                     //一会儿根据raycast hit的标签来判断该生成什么种类碎石
-                    Instantiate(smallRock[0], hitEffect.transform.position, Quaternion.identity);
+                    //Instantiate(smallRock[0], new Vector3(hitEffect.transform.position.x, hitEffect.transform.position.y, hitEffect.transform.position.z-0.4f), Quaternion.identity);//这个位置很有问题 ，应该在屏幕的中心
+
+                    Vector3 p = camera.ViewportToWorldPoint(new Vector3(0, 0, camera.nearClipPlane));//不好 还是从锄头附近生成合理
+                    Instantiate(smallRock[0], new Vector3(hitEffect.transform.position.x-0.2f, hitEffect.transform.position.y, hitEffect.transform.position.z - 0.45f), Quaternion.identity);
+
             hoe.GetComponent<AudioSource>().time = 0.65f;
             hoe.GetComponent<AudioSource>().Play();
             HoldEnoughTime += 1;

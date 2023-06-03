@@ -7,6 +7,7 @@ public class DisableMainCam : MonoBehaviour
     GameObject originalPlayerObject;
     GameObject playerCam;
     public GameObject minerTalk;
+    public GameObject[] UIElements;
 
     public float sec2Wait = 7f;
     // Start is called before the first frame update
@@ -19,6 +20,11 @@ public class DisableMainCam : MonoBehaviour
         playerCam = originalPlayerObject.transform.GetChild(0).gameObject;
         originalPlayerObject.GetComponent<Rigidbody>().isKinematic = true;
         playerCam.GetComponent<AudioListener>().enabled = false;
+
+        foreach (var UI in UIElements)
+        {
+            UI.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -52,7 +58,10 @@ public class DisableMainCam : MonoBehaviour
             //originalPlayerObject.transform.localEulerAngles = new Vector3(-12.263f, 158.852646f, 0);
             //originalPlayerObject.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
 
-
+            foreach (var UI in UIElements)
+            {
+                UI.SetActive(true);
+            }
             gameObject.SetActive(false);
         }
             

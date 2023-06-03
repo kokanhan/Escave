@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3024092566705506068}
   - component: {fileID: 9048869567324288627}
   - component: {fileID: 554286441161803460}
+  - component: {fileID: 1530263735}
   m_Layer: 0
   m_Name: charcoal
   m_TagString: Untagged
@@ -100,7 +101,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!64 &554286441161803460
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -115,6 +116,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 70948873267775455, guid: f26c94bf70240d04f9c0d033534cd3d2, type: 3}
+--- !u!114 &1530263735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672474780475205313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a5f9c0e7e460a4091912c7423f38cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac: 10
+  newpower: -3
 --- !u!1 &6080904887729020264
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6080904887729020265}
   - component: {fileID: 7631222353331961761}
-  - component: {fileID: 4938184492161622758}
+  - component: {fileID: 2412394042164018468}
   m_Layer: 0
   m_Name: smallCharcoal
   m_TagString: Untagged
@@ -159,23 +174,107 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6080904887729020264}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.7553543, y: 1.0000005, z: 1.3901552}
   m_Center: {x: -1.8797004, y: 0.31000024, z: 0.19507383}
---- !u!114 &4938184492161622758
-MonoBehaviour:
+--- !u!82 &2412394042164018468
+AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6080904887729020264}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58a5f9c0e7e460a4091912c7423f38cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6c0bbb7ffa3789849b82fd4d984770e7, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6080904888682257249
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,6 +288,7 @@ GameObject:
   - component: {fileID: 6080904888682257263}
   - component: {fileID: 1333979659}
   - component: {fileID: 7249771559545059034}
+  - component: {fileID: 956077420}
   m_Layer: 0
   m_Name: charcoal (1)
   m_TagString: Untagged
@@ -276,7 +376,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!64 &7249771559545059034
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -291,6 +391,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 70948873267775455, guid: f26c94bf70240d04f9c0d033534cd3d2, type: 3}
+--- !u!114 &956077420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6080904888682257249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a5f9c0e7e460a4091912c7423f38cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac: 10
+  newpower: -3
 --- !u!1 &6080904888762404545
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +418,7 @@ GameObject:
   - component: {fileID: 6080904888762404559}
   - component: {fileID: 1254883243}
   - component: {fileID: 6282588535822873928}
+  - component: {fileID: 1001475077}
   m_Layer: 0
   m_Name: charcoal (2)
   m_TagString: Untagged
@@ -391,7 +506,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!64 &6282588535822873928
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -406,3 +521,17 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 70948873267775455, guid: f26c94bf70240d04f9c0d033534cd3d2, type: 3}
+--- !u!114 &1001475077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6080904888762404545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a5f9c0e7e460a4091912c7423f38cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac: 10
+  newpower: -3

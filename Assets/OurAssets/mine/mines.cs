@@ -46,7 +46,7 @@ public class mines : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             
-                Debug.Log("start dig");
+                //Debug.Log("start dig");
                 holding = true;
                 
 
