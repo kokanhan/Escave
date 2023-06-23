@@ -132,6 +132,7 @@ public class PushCart : MonoBehaviour
         {
           effectPlayed = true;
           smokeFX.GetComponent<ParticleSystem>().Play();
+          gameObject.GetComponent<AudioSource>().Play();
 
         }
             startCartOBJ.GetComponent<StartCart>().cartOnRail = true;

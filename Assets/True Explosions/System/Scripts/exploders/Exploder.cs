@@ -18,6 +18,7 @@ public class Exploder : MonoBehaviour {
 
 	public GameObject player;
 	public Camera camera;
+	public bool PlayerisSafe = false;
 
 	private float explodedWaveCurTime;
 	private float explodedWaveTime = 0.5f;
@@ -27,6 +28,9 @@ public class Exploder : MonoBehaviour {
 	private Vector3[] flamePos = new Vector3[]{new Vector3(0.068f, 1.56f, 0.09f), new Vector3(0.176f, 1.479f, 0.058f), new Vector3(0.031f, 0.941f, 0.025f)};
 
 	public AudioSource audioSource;
+
+	public GameObject safeAreaObject;
+	public GameObject deadend;
 
 	public virtual IEnumerator explode() {
 		ExploderComponent[] components = GetComponents<ExploderComponent>();
@@ -85,7 +89,19 @@ public class Exploder : MonoBehaviour {
 			//朝玩家面向的方向施加作用力 反方向推一把
 			//player.GetComponent<Rigidbody>().AddForce(player.transform.forward * -1000f);
 			//效果要朝一个固定方向 不管玩家看哪里
-			player.GetComponent<Rigidbody>().AddForce(new Vector3(0,0,-1f) * -1000f);
+			if(PlayerisSafe == false)
+            {
+				player.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1f) * -1000f);
+				deadend.SetActive(true);
+				safeAreaObject.GetComponent<safeArea>().hurt = true;
+				//Debug.Log("you are not safe");
+			}
+            else
+            {
+				player.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -1f) * -10f);
+				//Debug.Log("safe");
+			}
+			
 			explodedWaveCurTime += Time.deltaTime;
 		}
 
@@ -127,6 +143,9 @@ public class Exploder : MonoBehaviour {
 		RaycastHit hit;
 		if (Physics.Raycast(testRay, out hit, estimatedRadius)) {
 			if (hit.rigidbody != null) {
+				//可以显示下hit.rigidbody的名字是什么
+				Debug.Log("shootRay rigidbody" + hit.rigidbody);
+
 				hit.rigidbody.AddForceAtPosition(power * Time.deltaTime * testRay.direction / probeCount, hit.point);
 				estimatedRadius /= 2;
 			} else {
@@ -144,5 +163,6 @@ public class Exploder : MonoBehaviour {
 	{
 		underFire = true;
 		flame.SetActive(true);
+		safeAreaObject.SetActive(true);
 	}
 }

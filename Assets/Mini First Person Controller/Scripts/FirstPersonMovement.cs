@@ -17,6 +17,7 @@ public class FirstPersonMovement : MonoBehaviour
     public GameObject hoe;
 
     public bool hoePicked;
+    public bool digging;
 
     Rigidbody rigidbody;
     /// <summary> Functions to override movement speed. Will use the last added override. </summary>
@@ -29,6 +30,7 @@ public class FirstPersonMovement : MonoBehaviour
     {
         canMove = true;
         hoePicked = false;
+        digging = false;
     }
 
     void Awake()
@@ -115,6 +117,7 @@ public class FirstPersonMovement : MonoBehaviour
             {
                 if (Vector3.Distance(hit.transform.position, transform.position) > 3.0f)
                 {
+                    digging = false;
                     return;
                 }
 
@@ -137,8 +140,28 @@ public class FirstPersonMovement : MonoBehaviour
                     hitObject.GetComponent<MineItemPickUp>().Pickup();
                     //GetComponentInParent<FirstPersonMovement>().canMove = false;
                 }
+                if (Vector3.Distance(hit.transform.position, transform.position) < 3f && (hit.collider.tag == "ChaMine2Dig"|| hit.collider.tag == "NiMine2Dig"|| hit.collider.tag == "SuMine2Dig"))//目前还不知道射线的最佳距离是多少 暂且设定2f
+                {
+                    //开挖
+                    gameObject.GetComponent<HoeAction>().MineName = hit.collider.tag;
+                    digging = true;
+                }
+                //else if(Vector3.Distance(hit.transform.position, transform.position) > 2.5f)
+                //{
+                //    digging = false;
+                //}
+                else if(hit.collider.tag != "ChaMine2Dig" || hit.collider.tag != "NiMine2Dig" || hit.collider.tag != "SuMine2Dig")
+                {
+                    digging = false;
+                }
+
             }
         }
+    }
+    
+    public bool returnDigging()
+    {
+        return digging;
     }
 
     IEnumerator backpackSwitch()

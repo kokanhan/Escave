@@ -80,7 +80,7 @@ public class BatteryPlacement : MonoBehaviour
             switch (item.itemType)
             {
                 case Item.ItemType.NanfuBattery:
-                    Debug.Log("You get Battery!");
+                    //Debug.Log("You get Battery!");
                     PlaceBattery();
                     RemoveItem(item);
                     break;
@@ -97,7 +97,7 @@ public class BatteryPlacement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.E))
         {
-            Debug.Log("hitcollier Bat!");
+            //Debug.Log("hitcollier Bat!");
             UseBatteryItem();
 
         }
