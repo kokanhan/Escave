@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class HoeAction : MonoBehaviour
 {
     public Camera camera;
@@ -20,21 +21,55 @@ public class HoeAction : MonoBehaviour
 
     private Vector3 curEnd;
     private float curTime;
-    private bool isIn;
+    public bool isIn;
     public int DigEnoughTime;
     public GameObject[] Mines;
     public GameObject[] Powders;
-    public string MineName; 
+    public string MineName;
+
+
+
+
+    //***************************************************************************************************
+    // Hoe Action UI Part
+    private bool theEnd = false;
+
+
+    public GameObject hintLayout;
+    public GameObject hintBar;
+    public GameObject hintText;
+    private float PushPushPushValue = 0f;
+
+
+    private Vector2 hintOriginPos;
+    private float hintCurDegree;
+    private float hintDistant;
+    private float hintSpd;
+
+    bool pressedF = false;
+
+    //***************************************************************************************************
+
+
 
     void Start()
     {
         detector.transform.localPosition = new Vector3(-0.375f, 0.707f, 0.002568513f);
         curEnd = end;
         camera = this.transform.GetChild(0).gameObject.GetComponent<Camera>();
+
+
+
+        //***************************************************************************************************
+        // Hoe Action UI Part
+        hintOriginPos = hintLayout.GetComponent<RectTransform>().position;
+        PushPushPushValue = 0f;
+
+        //***************************************************************************************************
     }
 
 
-    void Update()
+void Update()
     {
         Debug.DrawRay(detector.transform.position, detector.transform.forward * 10, Color.red);
         if (!GetComponent<FirstPersonMovement>().hoePicked)
@@ -55,6 +90,18 @@ public class HoeAction : MonoBehaviour
 
         if (isIn)
         {
+            //*******************************************************************************************************
+            //UI part
+            //if (gameObject.GetComponent<FirstPersonMovement>().digging == true)//设置成玩家必须对矿物发出射线再显示UI 这样可以解决isIn条件因为update的延迟关系 导致UI在一些帧出现 未成功关闭
+            //{
+            //    hintLayout.SetActive(true);
+            //}
+                
+            theEnd = false;
+            Debug.Log("theEnd  " + theEnd);
+            //*******************************************************************************************************
+
+
             if (curTime < midStartTime)
             {
                 hoe.transform.localEulerAngles = Vector3.Lerp(start, mid, easeOutcirc(curTime / midStartTime));
@@ -87,17 +134,58 @@ public class HoeAction : MonoBehaviour
                     {
                         Debug.Log("DigEnoughTime == 3");
                         Debug.Log("hit name" + hit.collider.tag);
-                        destoryMine(MineName);
+                        //destoryMine(MineName);
                         tempO = null;
                     }
 
                     forceStop();
+
+
+                    ////***************************************************************************************************
+                    //// Hoe Action UI Part
+                    //pressedF = true;
+                    //PushPushPushValue += 3;
+                    //hintDistant = Mathf.Min(hintDistant + 7, 40);
+                    //hintSpd = Mathf.Min(hintSpd + 3f, 7f);
+
+                    //if (PushPushPushValue >= 9)
+                    //{
+                    //    //已经有脚本控制矿石消失了
+                    //    theEnd = true;
+                    //    //Destroy(hintLayout,1f);//改为延迟一秒后数据清零 然后隐藏layout
+                    //    StartCoroutine("CleanUpData");
+                    //}
+
+                    //if (isIn && (pressedF == true))
+                    //{
+
+                    //    hintDistant = Mathf.Max(0, hintDistant - 40 * 0.3f * Time.deltaTime);
+                    //    hintSpd = Mathf.Max(0, hintSpd - 6f * 0.3f * Time.deltaTime);
+
+                    //    hintBar.GetComponent<Image>().material.SetFloat("_Percentage", (PushPushPushValue * 10 + 9.8f) / 100f);//记得把percent清零 结束的时候 
+
+                    //    //用来查找material在不在
+                    //    //Material temp = hintBar.GetComponent<Image>().material;
+                    //    //if (temp != null)
+                    //    //{
+                    //    //    Debug.Log("you"+ temp.name);
+                    //    //}
+                    //    Debug.Log("percent " + PushPushPushValue / 100f);
+                    //    animateUI();
+                    //}
+                    ////***************************************************************************************************
+
+                    pressedF = true;//UI part
+                    PushPushPushValue += 3;
                     return;
                 }
-                //Destroy(hit.collider.gameObject);
+                
                 hoe.transform.localEulerAngles = Vector3.Lerp(mid, end, easeInCirc((curTime - midStartTime) / (midEndTime - midStartTime)));
             }
 
+
+
+            
 
             else if (midEndTime < curTime && curTime < endStartTime)
             {
@@ -115,6 +203,90 @@ public class HoeAction : MonoBehaviour
 
             curTime += Time.deltaTime;
         }
+
+
+        //***************************************************************************************************
+        // Hoe Action UI Part
+        //pressedF = true;
+        if (pressedF && !theEnd)
+        {
+            //PushPushPushValue += 3;
+            hintDistant = Mathf.Min(hintDistant + 7, 40);
+            hintSpd = Mathf.Min(hintSpd + 3f, 7f);
+
+            if (PushPushPushValue >= 9)
+            {
+               
+                StartCoroutine("CleanUpData");
+                //return;
+            }
+
+            if (isIn)
+            {
+
+                hintDistant = Mathf.Max(0, hintDistant - 40 * 0.3f * Time.deltaTime);
+                hintSpd = Mathf.Max(0, hintSpd - 6f * 0.3f * Time.deltaTime);
+
+                hintBar.GetComponent<Image>().material.SetFloat("_Percentage", (PushPushPushValue * 10 + 9.8f) / 100f);//记得把percent清零 结束的时候 
+
+                //用来查找material在不在
+                //Material temp = hintBar.GetComponent<Image>().material;
+                //if (temp != null)
+                //{
+                //    Debug.Log("you"+ temp.name);
+                //}
+                //Debug.Log("percent " + PushPushPushValue / 100f);
+                animateUI();
+            }
+            //return;
+        }
+
+
+        if (!isIn)
+        {
+            StartCoroutine("CleanProgress");
+        }
+
+        //***************************************************************************************************
+    }
+
+
+
+
+    //***************************************************************************************************
+    // Hoe Action UI Part
+    private IEnumerator CleanUpData()
+    {
+        yield return new WaitForSeconds(1f);
+        PushPushPushValue = 0f;
+        hintBar.GetComponent<Image>().material.SetFloat("_Percentage", 0f);
+        hintDistant = 0f;
+        hintSpd = 0f;
+        hintLayout.SetActive(false);
+        theEnd = true;
+        pressedF = false;
+
+        destoryMine(MineName);
+        //yield return null;
+    }
+
+    private void animateUI()
+    {
+        hintCurDegree += hintSpd * Time.deltaTime;
+        hintLayout.GetComponent<RectTransform>().position = hintOriginPos + new Vector2(Mathf.Sin(hintCurDegree), Mathf.Cos(hintCurDegree)) * hintDistant;
+    }
+    //***************************************************************************************************
+
+    private IEnumerator CleanProgress()
+    {
+        
+        PushPushPushValue = 0f;
+        hintBar.GetComponent<Image>().material.SetFloat("_Percentage", 0f);
+        hintDistant = 0f;
+        hintSpd = 0f;
+        hintLayout.SetActive(false);
+        pressedF = false;
+        yield return null;
     }
 
 
@@ -128,15 +300,18 @@ public class HoeAction : MonoBehaviour
                 //显示碎屑
                 Powders[0].SetActive(true);
                 Destroy(Mines[0]);
+                //isIn = false;
                 Debug.Log("des mine");
                 break;
             case "NiMine2Dig":
                 Powders[1].SetActive(true);
                 Destroy(Mines[1]);
+                //isIn = false;
                 break;
             case "SuMine2Dig":
                 Powders[2].SetActive(true);
                 Destroy(Mines[2]);
+                //isIn = false;
                 break;
             default:
                 Debug.Log("no macth");

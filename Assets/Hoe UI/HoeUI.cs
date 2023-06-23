@@ -9,7 +9,7 @@ public class HoeUI : MonoBehaviour
     public bool isIn;
 
 
-    private GameObject player;
+
     public GameObject hintLayout;
     public GameObject hintBar;
     public GameObject hintText;
@@ -47,7 +47,8 @@ public class HoeUI : MonoBehaviour
                 {
                     //已经有脚本控制矿石消失了
                     theEnd = true;
-                    Destroy(hintLayout,1f);//改为延迟一秒后数据清零 然后隐藏layout
+                //Destroy(hintLayout,1f);//改为延迟一秒后数据清零 然后隐藏layout
+                StartCoroutine("CleanUpData");
                 }
             }
         
@@ -73,19 +74,31 @@ public class HoeUI : MonoBehaviour
         
     }
 
+    private IEnumerator CleanUpData()
+    {
+        yield return new WaitForSeconds(1f);
+        PushPushPushValue = 0f;
+        hintBar.GetComponent<Image>().material.SetFloat("_Percentage", 0f);
+        hintDistant = 0f;
+        hintSpd = 0f;
+        hintLayout.SetActive(false);
+        isIn = false;
+    }
+
     private void animateUI()
     {
         hintCurDegree += hintSpd * Time.deltaTime;
         hintLayout.GetComponent<RectTransform>().position = hintOriginPos + new Vector2(Mathf.Sin(hintCurDegree), Mathf.Cos(hintCurDegree)) * hintDistant;
     }
 
+
+    //这里要改成ray hit到mine
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             isIn = true;
             Debug.Log("Hoe is in");
-            player = other.gameObject;
             hintLayout.SetActive(true);
         }
     }

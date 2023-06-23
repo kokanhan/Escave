@@ -144,7 +144,17 @@ public class FirstPersonMovement : MonoBehaviour
                 {
                     //开挖
                     gameObject.GetComponent<HoeAction>().MineName = hit.collider.tag;
-                    digging = true;
+                    if(hit.collider != null)
+                    {
+                        digging = true;
+                        gameObject.GetComponent<HoeAction>().hintLayout.SetActive(true);
+                        
+                    }
+                    else
+                    {
+                        digging = false;
+                    }
+                    
                 }
                 //else if(Vector3.Distance(hit.transform.position, transform.position) > 2.5f)
                 //{
@@ -153,6 +163,7 @@ public class FirstPersonMovement : MonoBehaviour
                 else if(hit.collider.tag != "ChaMine2Dig" || hit.collider.tag != "NiMine2Dig" || hit.collider.tag != "SuMine2Dig")
                 {
                     digging = false;
+                    gameObject.GetComponent<HoeAction>().isIn = false;
                 }
 
             }
