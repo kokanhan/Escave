@@ -18,6 +18,10 @@ TagManager:
   - Mine
   - ExitLadderStart
   - ExitLadderEnd
+  - Ground
+  - ChaMine2Dig
+  - NiMine2Dig
+  - SuMine2Dig
   layers:
   - Default
   - TransparentFX
@@ -27,7 +31,7 @@ TagManager:
   - UI
   - ExamineLayer
   - InspectPointLayer
-  - 
+  - TopLayer
   - 
   - 
   - 

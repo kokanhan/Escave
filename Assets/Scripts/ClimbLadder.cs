@@ -221,7 +221,7 @@ public class ClimbLadder : MonoBehaviour
         else if (other.tag == "ExitLadderEnd" || other.tag == "LadderEnd")
         {
             isIn = false;
-            Debug.Log("not in");
+            //Debug.Log("not in");
         }
     }
 }

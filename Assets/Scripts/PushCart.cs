@@ -6,6 +6,7 @@ using TMPro;
 
 public class PushCart : MonoBehaviour
 {
+    public GameObject startCartOBJ;
     public GameObject cart;
     public GameObject smokeFX;
     private bool effectPlayed;
@@ -131,7 +132,10 @@ public class PushCart : MonoBehaviour
         {
           effectPlayed = true;
           smokeFX.GetComponent<ParticleSystem>().Play();
+          gameObject.GetComponent<AudioSource>().Play();
+
         }
+            startCartOBJ.GetComponent<StartCart>().cartOnRail = true;
       }
 
       curTime += Time.deltaTime;

@@ -57,7 +57,7 @@ public class explosion : MonoBehaviour
 
         if (Input.GetKey(KeyCode.P))
         {
-            Debug.Log("place bomb!");//this is not real set up, doen't check the inventory
+            //Debug.Log("place bomb!");//this is not real set up, doen't check the inventory
             bomb.SetActive(true);
             SetUp = true;
             NewItems = InventoryManager.Instance.Items;

@@ -5,9 +5,10 @@ using UnityEngine;
 public class MineItemPickUp : MonoBehaviour
 {
     public Material lightMat;
+    public GameObject light;
 
     GameObject parentObj;
-    GameObject light;
+    
     Material[] matCopy;
 
     public Item item;
@@ -17,8 +18,8 @@ public class MineItemPickUp : MonoBehaviour
         if(item.itemName == "Battery")
         {
             
-            parentObj = GameObject.Find("BotLevelObjects");
-            light = parentObj.transform.GetChild(1).gameObject;
+            //parentObj = GameObject.Find("BotLevelObjects");
+            //light = parentObj.transform.GetChild(1).gameObject;
             matCopy = light.GetComponent<Renderer>().materials;
             //matCopy[0] = Resources.Load("/Our Assets/Light/M_LightTower_NoLight.mat", typeof(Material)) as Material;
             //matCopy[0] = Resources.Load<Material>("OurAssets/Light/M_LightTower_NoLight");
