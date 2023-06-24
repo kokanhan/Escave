@@ -14870,7 +14870,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.0016927746, y: 0.9976352, z: -0.026668709, w: 0.063324094}
+  m_LocalRotation: {x: 0.0016927747, y: 0.9976352, z: -0.026668724, w: 0.063324064}
   m_LocalPosition: {x: -55.909645, y: 167.84456, z: 18.955627}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15921,7 +15921,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1043726735}
-  m_LocalRotation: {x: 0.0016927746, y: 0.9976352, z: -0.026668709, w: 0.063324094}
+  m_LocalRotation: {x: 0.0016927747, y: 0.9976352, z: -0.026668724, w: 0.063324064}
   m_LocalPosition: {x: -0.3717227, y: 0.09326345, z: 1.6893649}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -46579,7 +46579,8 @@ MonoBehaviour:
   hoe: {fileID: 14444455}
   detector: {fileID: 1074009325}
   hitEffect: {fileID: 1546545516}
-  smallRock: []
+  smallRock:
+  - {fileID: 6080904889663582567}
   HoldEnoughTime: 0
 --- !u!114 &1538880337894928939
 MonoBehaviour:
@@ -49764,6 +49765,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7dd855c61d16e7439dca9f9022a856c, type: 3}
+--- !u!1 &6080904889663582567 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6080904887729020264, guid: b7dd855c61d16e7439dca9f9022a856c, type: 3}
+  m_PrefabInstance: {fileID: 6080904889663582566}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6109296269858590559
 GameObject:
   m_ObjectHideFlags: 0
