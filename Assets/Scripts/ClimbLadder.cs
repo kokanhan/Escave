@@ -15,9 +15,9 @@ public class ClimbLadder : MonoBehaviour
     private Vector3 exitStart = new Vector3(-57.19f, 155.15f, 12.22f);//面向的开始位置
     private Vector3 exitEnd = new Vector3(-54.47f, 167.5f, 8.38f);//面向的结束位置
 
-    private Vector3 rotation = new Vector3(19.5f, 12.83f, 0f);
-    private Vector3 start = new Vector3(-83.44f, 140.68f, 121.67f);
-    private Vector3 end = new Vector3(-82.95f, 146.23f, 121.67f);
+    private Vector3 rotation = new Vector3(23.259f, 15.118f, 0.719f);
+    private Vector3 start = new Vector3(-82.91f, 139.13f, 122.13f);
+    private Vector3 end = new Vector3(-82.446f, 146.53f, 125.304f);
 
     private float a;
 
@@ -148,12 +148,12 @@ public class ClimbLadder : MonoBehaviour
 
             if (Input.GetKey(KeyCode.W))
             {
-                a += climbingSpeed * Time.deltaTime;
+                a += 2 * climbingSpeed * Time.deltaTime;
             }
 
             if (Input.GetKey(KeyCode.S))
             {
-                a -= climbingSpeed * Time.deltaTime;
+                a -= 2 * climbingSpeed * Time.deltaTime;
             }
 
             transform.position = Vector3.Lerp(start, end, a);

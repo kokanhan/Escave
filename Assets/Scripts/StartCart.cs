@@ -12,7 +12,7 @@ public class StartCart : MonoBehaviour
     void Update()
     {
         //if (battery.activeSelf)
-        //{//Input.GetKeyDown(KeyCode.C) && 
+        //{//Input.GetKeyDown(KeyCode.C) &&
         //    Debug.Log("Active!");
         //}
 
@@ -29,7 +29,7 @@ public class StartCart : MonoBehaviour
                 }
 
 
-                if (hit.collider.tag == "Go" && battery.activeSelf && cartOnRail == true)
+                if (true || hit.collider.tag == "Go" && battery.activeSelf && cartOnRail == true)
                 {
                     // Debug.Log("plz go!");
                     GetComponent<railFollow>().startCartNow(isIn);

@@ -27,6 +27,8 @@ public class HoeAction : MonoBehaviour
     public GameObject[] Powders;
     public string MineName;
 
+    private bool hasChecked;
+
 
 
 
@@ -79,6 +81,7 @@ void Update()
 
         if (Input.GetKeyDown(KeyCode.F))
         {
+            hasChecked = false;
 
             curTime = 0;
             if (gameObject.GetComponent<FirstPersonMovement>().digging == true)
@@ -96,7 +99,7 @@ void Update()
             //{
             //    hintLayout.SetActive(true);
             //}
-                
+
             theEnd = false;
             Debug.Log("theEnd  " + theEnd);
             //*******************************************************************************************************
@@ -108,88 +111,128 @@ void Update()
             }
             else if (curTime < midEndTime)
             {
-                RaycastHit hit;
-                //Debug.DrawRay(ray.origin, ray.direction * 10, Color.blue);
-                if (Physics.Raycast(detector.transform.position, detector.transform.forward, out hit, 0.5f))
-                {
-                    
-                    Instantiate(hitEffect, hit.point, Quaternion.identity);
-                    hitEffect.transform.position = hit.point;
-                    hitEffect.GetComponent<ParticleSystem>().Play();
-
-                    Vector3 p = camera.ViewportToWorldPoint(new Vector3(0, 0, camera.nearClipPlane));//不好 还是从锄头附近生成合理
-
-                    GameObject tempO = spawnSmallRock(MineName);
-                    //根据raycast hit的标签来判断该生成什么种类碎石
-                    if (tempO != null)
-                    {
-                        Instantiate(tempO, new Vector3(hit.point.x - 0.05f, hit.point.y - 0.15f, hit.point.z - 0.3f), Quaternion.identity);//先改射线
-
-                        hoe.GetComponent<AudioSource>().time = 0.65f;
-                        hoe.GetComponent<AudioSource>().Play();
-                        DigEnoughTime += 1;
-                    }
-                    
-                    if (DigEnoughTime >= 3)
-                    {
-                        Debug.Log("DigEnoughTime == 3");
-                        Debug.Log("hit name" + hit.collider.tag);
-                        //destoryMine(MineName);
-                        tempO = null;
-                    }
-
-                    forceStop();
-
-
-                    ////***************************************************************************************************
-                    //// Hoe Action UI Part
-                    //pressedF = true;
-                    //PushPushPushValue += 3;
-                    //hintDistant = Mathf.Min(hintDistant + 7, 40);
-                    //hintSpd = Mathf.Min(hintSpd + 3f, 7f);
-
-                    //if (PushPushPushValue >= 9)
-                    //{
-                    //    //已经有脚本控制矿石消失了
-                    //    theEnd = true;
-                    //    //Destroy(hintLayout,1f);//改为延迟一秒后数据清零 然后隐藏layout
-                    //    StartCoroutine("CleanUpData");
-                    //}
-
-                    //if (isIn && (pressedF == true))
-                    //{
-
-                    //    hintDistant = Mathf.Max(0, hintDistant - 40 * 0.3f * Time.deltaTime);
-                    //    hintSpd = Mathf.Max(0, hintSpd - 6f * 0.3f * Time.deltaTime);
-
-                    //    hintBar.GetComponent<Image>().material.SetFloat("_Percentage", (PushPushPushValue * 10 + 9.8f) / 100f);//记得把percent清零 结束的时候 
-
-                    //    //用来查找material在不在
-                    //    //Material temp = hintBar.GetComponent<Image>().material;
-                    //    //if (temp != null)
-                    //    //{
-                    //    //    Debug.Log("you"+ temp.name);
-                    //    //}
-                    //    Debug.Log("percent " + PushPushPushValue / 100f);
-                    //    animateUI();
-                    //}
-                    ////***************************************************************************************************
-
-                    pressedF = true;//UI part
-                    PushPushPushValue += 3;
-                    return;
-                }
+                // RaycastHit hit;
+                // //Debug.DrawRay(ray.origin, ray.direction * 10, Color.blue);
+                // if (Physics.Raycast(detector.transform.position, detector.transform.forward, out hit, 0.5f))
+                // {
+                //
+                //     Instantiate(hitEffect, hit.point, Quaternion.identity);
+                //     hitEffect.transform.position = hit.point;
+                //     hitEffect.GetComponent<ParticleSystem>().Play();
+                //
+                //     Vector3 p = camera.ViewportToWorldPoint(new Vector3(0, 0, camera.nearClipPlane));//不好 还是从锄头附近生成合理
+                //
+                //     GameObject tempO = spawnSmallRock(MineName);
+                //     //根据raycast hit的标签来判断该生成什么种类碎石
+                //     if (tempO != null)
+                //     {
+                //         Instantiate(tempO, new Vector3(hit.point.x - 0.05f, hit.point.y - 0.15f, hit.point.z - 0.3f), Quaternion.identity);//先改射线
+                //
+                //         hoe.GetComponent<AudioSource>().time = 0.65f;
+                //         hoe.GetComponent<AudioSource>().Play();
+                //         DigEnoughTime += 1;
+                //     }
+                //
+                //     if (DigEnoughTime >= 3)
+                //     {
+                //         Debug.Log("DigEnoughTime == 3");
+                //         Debug.Log("hit name" + hit.collider.tag);
+                //         //destoryMine(MineName);
+                //         tempO = null;
+                //     }
+                //
+                //     forceStop();
+                //
+                //
+                //     ////***************************************************************************************************
+                //     //// Hoe Action UI Part
+                //     //pressedF = true;
+                //     //PushPushPushValue += 3;
+                //     //hintDistant = Mathf.Min(hintDistant + 7, 40);
+                //     //hintSpd = Mathf.Min(hintSpd + 3f, 7f);
+                //
+                //     //if (PushPushPushValue >= 9)
+                //     //{
+                //     //    //已经有脚本控制矿石消失了
+                //     //    theEnd = true;
+                //     //    //Destroy(hintLayout,1f);//改为延迟一秒后数据清零 然后隐藏layout
+                //     //    StartCoroutine("CleanUpData");
+                //     //}
+                //
+                //     //if (isIn && (pressedF == true))
+                //     //{
+                //
+                //     //    hintDistant = Mathf.Max(0, hintDistant - 40 * 0.3f * Time.deltaTime);
+                //     //    hintSpd = Mathf.Max(0, hintSpd - 6f * 0.3f * Time.deltaTime);
+                //
+                //     //    hintBar.GetComponent<Image>().material.SetFloat("_Percentage", (PushPushPushValue * 10 + 9.8f) / 100f);//记得把percent清零 结束的时候
+                //
+                //     //    //用来查找material在不在
+                //     //    //Material temp = hintBar.GetComponent<Image>().material;
+                //     //    //if (temp != null)
+                //     //    //{
+                //     //    //    Debug.Log("you"+ temp.name);
+                //     //    //}
+                //     //    Debug.Log("percent " + PushPushPushValue / 100f);
+                //     //    animateUI();
+                //     //}
+                //     ////***************************************************************************************************
+                //
+                //     pressedF = true;//UI part
+                //     PushPushPushValue += 3;
+                //     return;
+                // }
                 
                 hoe.transform.localEulerAngles = Vector3.Lerp(mid, end, easeInCirc((curTime - midStartTime) / (midEndTime - midStartTime)));
             }
 
 
 
-            
 
-            else if (midEndTime < curTime && curTime < endStartTime)
+
+            else if (!hasChecked && midEndTime < curTime && curTime < endStartTime)
             {
-                hoe.transform.localEulerAngles = curEnd;
+              hasChecked = true;
+
+              Ray ray = camera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+              RaycastHit hit;
+
+              if (Physics.Raycast(ray, out hit))
+              {
+                Debug.LogError(hit.collider.name + " 1 " + hit.distance);
+
+                if(hit.distance < 3 && spawnSmallRock(hit.collider.tag) != null)
+                {
+                  Instantiate(hitEffect, hit.point, Quaternion.identity);
+                  hitEffect.transform.position = hit.point;
+                  hitEffect.GetComponent<ParticleSystem>().Play();
+
+                  Vector3 p = camera.ViewportToWorldPoint(new Vector3(0, 0, camera.nearClipPlane));//不好 还是从锄头附近生成合理
+
+                  GameObject tempO = spawnSmallRock(hit.collider.tag);
+                  //根据raycast hit的标签来判断该生成什么种类碎石
+                  Instantiate(tempO, new Vector3(hit.point.x - 0.05f, hit.point.y - 0.15f, hit.point.z - 0.3f), Quaternion.identity);//先改射线
+
+                  hoe.GetComponent<AudioSource>().time = 0.65f;
+                  hoe.GetComponent<AudioSource>().Play();
+                  DigEnoughTime += 1;
+
+                  if (DigEnoughTime >= 3)
+                  {
+                      Debug.Log("DigEnoughTime == 3");
+                      Debug.Log("hit name" + hit.collider.tag);
+                      //destoryMine(MineName);
+                      tempO = null;
+                  }
+
+                  pressedF = true;//UI part
+                  PushPushPushValue += 3;
+
+                  hoe.transform.localEulerAngles = curEnd;
+
+                  return;
+                }
+              }
             }
             else if (endStartTime < curTime && curTime < endStartTime + 1)
             {
@@ -216,7 +259,7 @@ void Update()
 
             if (PushPushPushValue >= 9)
             {
-               
+
                 StartCoroutine("CleanUpData");
                 //return;
             }
@@ -227,7 +270,7 @@ void Update()
                 hintDistant = Mathf.Max(0, hintDistant - 40 * 0.3f * Time.deltaTime);
                 hintSpd = Mathf.Max(0, hintSpd - 6f * 0.3f * Time.deltaTime);
 
-                hintBar.GetComponent<Image>().material.SetFloat("_Percentage", (PushPushPushValue * 10 + 9.8f) / 100f);//记得把percent清零 结束的时候 
+                hintBar.GetComponent<Image>().material.SetFloat("_Percentage", (PushPushPushValue * 10 + 9.8f) / 100f);//记得把percent清零 结束的时候
 
                 //用来查找material在不在
                 //Material temp = hintBar.GetComponent<Image>().material;
@@ -279,7 +322,7 @@ void Update()
 
     private IEnumerator CleanProgress()
     {
-        
+
         PushPushPushValue = 0f;
         hintBar.GetComponent<Image>().material.SetFloat("_Percentage", 0f);
         hintDistant = 0f;
@@ -364,6 +407,3 @@ void Update()
 
 
 }
-
-
-
