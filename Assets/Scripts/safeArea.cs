@@ -12,6 +12,7 @@ public class safeArea : MonoBehaviour
     public GameObject blackScreen;
     //public Image blackScreen;
     public GameObject player;
+    public GameObject UIBlur;
 
     public int interpolationFrames = 5000;
     FirstPersonMovement fm;
@@ -19,6 +20,9 @@ public class safeArea : MonoBehaviour
     Color curColor;
     float elapsedFrames = 0f;
     float rate;
+    float elapsed = 0f;
+    float lastTime = 0f;
+    bool frozen;
 
     GameObject image;
     
@@ -30,18 +34,34 @@ public class safeArea : MonoBehaviour
         //curColor = blackScreen.color;
         //curColor = image.color;
         blackScreen.SetActive(false);
+        lastTime = Time.realtimeSinceStartup;
+        frozen = false;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (hurt == true)
         {
+            StartCoroutine("Wait2Sec");
             //Debug.Log("fade out");
             blackScreen.SetActive(true);
             StartCoroutine("goDeadEnd");
-            //StartCoroutine("loadEnd")
+            //Time.deltaTime is the interval in seconds from the last frame to the current one (Read Only).
+            //if(Time.timeScale>0f)
+            //{
+            //    Time.timeScale -= 0.5f*Time.deltaTime;
+            //}
+            if(frozen ==true){
+                elapsed += Time.realtimeSinceStartup - lastTime;
+                lastTime = Time.realtimeSinceStartup;
+                Time.timeScale = Mathf.Lerp(1f, 0f, 0.07f * elapsed);
+                Debug.Log("elapsed: " + elapsed + " lastTime: " + lastTime);
+            }
+                
             
+
+
         }
     }
 
@@ -58,25 +78,31 @@ public class safeArea : MonoBehaviour
             //这个gameobject在玩家点燃炸弹后出现
         }
     }
-
+    //给炸飞到地面上这个过程留充足的时间
+    IEnumerator Wait2Sec()
+    {
+        yield return new WaitForSeconds(3f);
+        frozen = true;
+        UIBlur.SetActive(true);
+    }
 
     IEnumerator goDeadEnd()
     {
-        yield return new WaitForSeconds(5f);
-        fm = player.GetComponent<FirstPersonMovement>();
-        fm.enabled = false;//freeze player input
-        player.GetComponent<Jump>().enabled = false;
-        player.GetComponentInChildren<FirstPersonLook>().enabled = false;
+        yield return new WaitForSeconds(3f);
+        //fm = player.GetComponent<FirstPersonMovement>();
+        //fm.enabled = false;//freeze player input
+        //player.GetComponent<Jump>().enabled = false;
+        //player.GetComponentInChildren<FirstPersonLook>().enabled = false;
 
 
         while (Mathf.Abs(curColor.a - targetAlpha) > 0.0001f)
         //while (rate < 1f) ;
         {
-            elapsedFrames += Time.deltaTime;
+            elapsedFrames += Time.realtimeSinceStartup - lastTime;
             Debug.Log("now the elapsedFrames is" + elapsedFrames);
             rate = (float)elapsedFrames / interpolationFrames;
             curColor.a = Mathf.Lerp(curColor.a, targetAlpha, rate*0.001f);
-            Debug.Log("Now curColor.a is" + curColor.a);
+            //Debug.Log("Now curColor.a is" + curColor.a);
             //blackScreen.color = curColor;
             blackScreen.GetComponent<Image>().color = curColor;
             
@@ -84,5 +110,6 @@ public class safeArea : MonoBehaviour
             yield return null;
         }
         SceneManager.LoadScene("dead end", LoadSceneMode.Single);
+        Time.timeScale = 1f;
     }
 }

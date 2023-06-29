@@ -29,11 +29,12 @@ public class StartCart : MonoBehaviour
                 }
 
 
-                if (true || hit.collider.tag == "Go" && battery.activeSelf && cartOnRail == true)
+                if ( hit.collider.tag == "Go" && battery.activeSelf && cartOnRail == true)
                 {
                     // Debug.Log("plz go!");
                     GetComponent<railFollow>().startCartNow(isIn);
                 }
+              
             }
         }
     }

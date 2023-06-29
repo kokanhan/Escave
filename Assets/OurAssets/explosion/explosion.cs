@@ -30,6 +30,8 @@ public class explosion : MonoBehaviour
         // call the script of item prefab that destory itself
         // get InventoryItems from Inventory manager
         InventoryManager.Instance.Remove(item);
+        bomb.SetActive(true);
+        SetUp = true;
 
     }
     public void SetUpBomb()
@@ -58,15 +60,12 @@ public class explosion : MonoBehaviour
         if (Input.GetKey(KeyCode.P))
         {
             //Debug.Log("place bomb!");//this is not real set up, doen't check the inventory
-            bomb.SetActive(true);
-            SetUp = true;
             NewItems = InventoryManager.Instance.Items;
+            SetUpBomb();
         }
     }
 
-    private void Update()
-    {
 
-    }
+
 
 }

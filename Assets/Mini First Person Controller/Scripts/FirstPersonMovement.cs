@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class FirstPersonMovement : MonoBehaviour
 {
+    public GameObject testTelPos;
     public float speed = 5;
 
     public bool canMove;
@@ -47,7 +48,15 @@ public class FirstPersonMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!canMove)
+        // Debug use
+        if (Input.GetKey(KeyCode.L))
+        {
+            this.transform.position = testTelPos.transform.position;
+        }
+        /////////////////////////////////////////////////////
+      
+
+            if (!canMove)
         {
             rigidbody.velocity = new Vector3();
             rigidbody.angularVelocity = new Vector3();
@@ -125,20 +134,26 @@ public class FirstPersonMovement : MonoBehaviour
                 {
                     hitObject = hit.transform.gameObject;
                     hitObject.GetComponent<ItemPickUp>().Pickup();
-                    //GetComponentInParent<FirstPersonMovement>().canMove = false;
+                    
                 }
                 else if (hit.collider.tag == "Mine")
                 {
                     hitObject = hit.transform.gameObject;
                     hitObject.GetComponent<MineItemPickUp>().Pickup();
-                    //GetComponentInParent<FirstPersonMovement>().canMove = false;
+                    
                 }
                 else if (hit.collider.name == "Battery2Pick")
                 {
 
                     hitObject = hit.transform.gameObject;
                     hitObject.GetComponent<MineItemPickUp>().Pickup();
-                    //GetComponentInParent<FirstPersonMovement>().canMove = false;
+                   
+                }
+                else if (hit.collider.name == "bomb")
+                {
+
+                    hitObject = hit.transform.gameObject;
+                    hitObject.GetComponent<MineItemPickUp>().Pickup();
                 }
                 if (Vector3.Distance(hit.transform.position, transform.position) < 3f && (hit.collider.tag == "ChaMine2Dig"|| hit.collider.tag == "NiMine2Dig"|| hit.collider.tag == "SuMine2Dig"))//目前还不知道射线的最佳距离是多少 暂且设定2f
                 {
