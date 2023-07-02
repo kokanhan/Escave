@@ -16,7 +16,7 @@ public class StartCart : MonoBehaviour
         //    Debug.Log("Active!");
         //}
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             Ray ray = camera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;

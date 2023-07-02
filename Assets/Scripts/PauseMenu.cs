@@ -5,6 +5,8 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public GameObject playerCam;
+    public GameObject OperationHint;
     public bool isPaused;
     // Start is called before the first frame update
     void Start()
@@ -15,8 +17,9 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)&& playerCam.GetComponent<FirstPersonLook>().inGame==true)
         {
+            Destroy(OperationHint);
             if (isPaused)
             {
                 ResumeGame();

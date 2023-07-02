@@ -63,7 +63,7 @@ public class BuildBomb : MonoBehaviour
         //Debug.Log("hey!");
         NewItems = InventoryManager.Instance.Items;
 
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.E))
         {
             Debug.Log("create bomb");
             UseItem();

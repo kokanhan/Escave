@@ -52,12 +52,12 @@ public class explosion : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKey(KeyCode.R)&& SetUp)
+        if (Input.GetKey(KeyCode.F)&& SetUp)
         {
             BlastRock();
         }
 
-        if (Input.GetKey(KeyCode.P))
+        if (Input.GetKey(KeyCode.E))
         {
             //Debug.Log("place bomb!");//this is not real set up, doen't check the inventory
             NewItems = InventoryManager.Instance.Items;

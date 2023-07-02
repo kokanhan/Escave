@@ -8,11 +8,13 @@ public class DisableMainCam : MonoBehaviour
     GameObject playerCam;
     public GameObject minerTalk;
     public GameObject[] UIElements;
+    public GameObject OperationHint;
 
     public float sec2Wait = 7f;
     // Start is called before the first frame update
     void Start()
     {
+        OperationHint.SetActive(false);
         minerTalk.SetActive(false);
         //Cursor.lockState = CursorLockMode.Locked;
         StartCoroutine(LateCall(sec2Wait));
@@ -51,6 +53,7 @@ public class DisableMainCam : MonoBehaviour
             //设置player camera的位置和ingame true
             originalPlayerObject.transform.position = new Vector3(transform.position.x-1, transform.position.y - 1, transform.position.z - 3);
             playerCam.transform.localEulerAngles = new Vector3(0, 0, 0);
+            OperationHint.SetActive(true);
             playerCam.GetComponent<AudioListener>().enabled = true;
             playerCam.GetComponent<FirstPersonLook>().inGame = true;
             minerTalk.SetActive(true);

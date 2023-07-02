@@ -32,6 +32,7 @@ public class FirstPersonMovement : MonoBehaviour
         canMove = true;
         hoePicked = false;
         digging = false;
+        Cursor.visible = false;
     }
 
     void Awake()
@@ -140,6 +141,7 @@ public class FirstPersonMovement : MonoBehaviour
                 {
                     hitObject = hit.transform.gameObject;
                     hitObject.GetComponent<MineItemPickUp>().Pickup();
+                   
                     
                 }
                 else if (hit.collider.name == "Battery2Pick")
@@ -168,6 +170,7 @@ public class FirstPersonMovement : MonoBehaviour
                     else
                     {
                         digging = false;
+                        gameObject.GetComponent<HoeAction>().hintLayout.SetActive(false);
                     }
                     
                 }
